@@ -1,8 +1,15 @@
 #Write a python program for contact tracing: 
 
 def logIn():
-    addMore = 1
-    while addMore != 0:
+    #Display a menu of options 
+    """
+    Menu: 
+        1 -> Log-in 
+        2 -> Search 
+        3 -> Exit (y/n)
+    """
+    log = int(input('Enter the number of people to log: '))
+    for num in range(0,log):
     #Ask personal data for contact tracing 
         personsInContact ={}
         personLog = input("Full Name (FN, MD, SN): ").title()
@@ -16,10 +23,10 @@ def logIn():
         address = input("Address (House Number, Street, Barangay, Town/City, Province): ").title()
         
         try:
-            contactNum = int(input('Contact Number: '))
+            contactNum = input('Contact Number: ')
         except ValueError:
-            print('Please input your real contact number as we will uphold to the Data Privacy Act.')
-            contactNum = int(input('Contact Number: '))
+            print('PLease input your real contact number as we will uphold the Data Privacy Act.')
+            contactNum = input('Contact Number: ')
 
         vaccineStats = input("Did you have full dose of vaccine? (y/n) ").lower()
         if 'y' in vaccineStats:
@@ -31,18 +38,14 @@ def logIn():
             else:
                 vaccineStats = 'Unvaccinated'
 
-        boosterStats = input("Did you have a booster? (y/n) ").lower()
-        if 'y' in boosterStats:
-            boosterStats = 'Yes'
-        else:
-            boosterStats = 'N/A'
-        
-        nameKey = personLog[0]
-        ageKey = age[0]
-        addressKey = address[0]
-        contactKey = contactNum[0]
-        vaccineKey = vaccineStats[0]
-        boosterKey = boosterStats[0]
+
+       
+        nameKey = personLog
+        ageKey = age
+        addressKey = address
+        contactKey = contactNum
+        vaccineKey = vaccineStats
+
 
         #Use dictionary to store the info 
         personsInContact[nameKey] = {
@@ -50,19 +53,21 @@ def logIn():
             'Address': addressKey,
             'Contact Number': contactKey,
             'Vaccine Status:': vaccineKey,
-            'Booster': boosterKey
-            
-        
+
+
             }
+            
+    print('Saved!')
+    searchLogs = input('Do you want to search a suspected/positive individual in the directory? (y/n) ')
+    if 'y' in searchLogs:
+        for pName, pInfoDict in personsInContact.items():
+            print('\nFull name:', pName)
 
-        logAgain = input('Log another person? (y/n)').lower()
-        if 'y' in logAgain:
-            print(personsInContact)
-            continue
-        else:
-            break
+            for key in pInfoDict:
+                print(key + ':', pInfoDict[key])
+    else:
+        exit()
 
-    print(personsInContact)
 
 def menuOption():
     #Display a menu of options 
@@ -72,33 +77,23 @@ def menuOption():
         2 -> Search 
         3 -> Exit (y/n)
     """
-    #Allow user to select item in the menu (check if valid) 
-    userTask = input('What do you want to do? ')
+    #Allow user to select item in the menu (check if valid)
+    try:
+        userTask = int(input('What do you want to do? '))
+    except ValueError:
+        print('Please enter only any of the given menu options.')
     if userTask == 1:
         logIn()
+    elif userTask == 2:
+        print('Add logs first. Directory(dict) is currently empty.')
+        logIn()
+    elif userTask == 3:
+        confirmation = input('Are you sure you want to exit? (y/n) ')
+        if 'y' in confirmation:
+            exit()
+        else:
+            menuOption()
+
         
 print(menuOption.__doc__)
 menuOption()
-
-
-"""- Perform the selected option 
- (Listed are sample only, add more) 
-
-The value is another dictionary of personal information 
-- Option 2: Search, ask full name then display the record 
-- Option 3: Ask the user if want to exit or retry. 
-Menu: 1 -> Add an item 2 -> Search 3 -> Exit (y/n) 
-What do you want to do? (1-3): 1 
-Full name: Danilo Madrigalejos 
-Age: 30 
-Address: Eastwood 
-Phone number: 1234567890 
-Saved! 
-What do you want to do? (1-3): 2 
-Full name: Danilo Madrigalejos 
-Age: 30 
-Address: Eastwood 
-Phone number: 1234567890 
-What do you want to do? (1-3): 3 
-Exit? n
-"""
