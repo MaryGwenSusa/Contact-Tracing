@@ -1,6 +1,5 @@
 #Write a python program for contact tracing: 
 
-
 #Allow user to select item in the menu (check if valid) 
 def menuOption():
     #Display a menu of options 
@@ -15,10 +14,10 @@ def menuOption():
     personLog = input("Full Name (FN, MD, SN): ")
     vaccineStats = input("Did you have full dose of vaccine? (y/n) ").lower()
     if vaccineStats == 'yes':
-        vaccineStats == 'Fully Vaccinated'
+        vaccineStats = 'Fully Vaccinated'
 
-    nameKey = personLog[0]
-    vaccineKey = vaccineStats[0]
+    nameKey = personLog
+    vaccineKey = vaccineStats
 
     personsInContact[nameKey] = {vaccineKey}
     print(personsInContact)
