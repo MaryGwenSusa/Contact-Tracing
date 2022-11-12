@@ -12,6 +12,25 @@ def menuOption():
 
     personsInContact ={}
     personLog = input("Full Name (FN, MD, SN): ").title()
+
+    try:
+        age = int(input("Age: "))
+    except ValueError:
+        print('Please input your real age in number format.')
+        age = int(input("Age: "))
+        
+    address = input("Address (House Number, Street, Barangay, Town/City, Province): ").title()
+    
+    try:
+        contactNum = int(input('Contact Number: '))
+    except ValueError:
+        print('Please input your real contact number as we will uphold to the Data Privacy Act.')
+        contactNum = int(input('Contact Number: '))
+
+
+
+
+
     vaccineStats = input("Did you have full dose of vaccine? (y/n) ").lower()
     if 'y' in vaccineStats:
         vaccineStats = 'Fully Vaccinated'
@@ -22,12 +41,32 @@ def menuOption():
         else:
             vaccineStats = 'Unvaccinated'
 
+    boosterStats = input("Did you have a booster? (y/n) ").lower()
+    if 'y' in boosterStats:
+        boosterStats = 'Yes'
+    else:
+        boosterStats = 'N/A'
+       
+
+
 
     nameKey = personLog
+    ageKey = age
+    addressKey = address
+    contactKey = contactNum
     vaccineKey = vaccineStats
+    boosterKey = boosterStats
 
     personsInContact[nameKey] = {
-        'Vaccine Status:': vaccineKey}
+        'Age': ageKey,
+        'Address': addressKey,
+        'Contact Number': contactKey,
+        'Vaccine Status:': vaccineKey,
+        'Booster': boosterKey
+        
+        
+        
+        }
     print(personsInContact)
 
 
