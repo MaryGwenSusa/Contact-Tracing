@@ -11,15 +11,23 @@ def menuOption():
     """
 
     personsInContact ={}
-    personLog = input("Full Name (FN, MD, SN): ")
+    personLog = input("Full Name (FN, MD, SN): ").title()
     vaccineStats = input("Did you have full dose of vaccine? (y/n) ").lower()
-    if vaccineStats == 'yes':
+    if 'y' in vaccineStats:
         vaccineStats = 'Fully Vaccinated'
+    else:
+        vaccineStats = input("Did you only have first dose? (y/n) ").lower()
+        if 'y' in vaccineStats:
+            vaccineStats = '1st dose'
+        else:
+            vaccineStats = 'Unvaccinated'
+
 
     nameKey = personLog
     vaccineKey = vaccineStats
 
-    personsInContact[nameKey] = {vaccineKey}
+    personsInContact[nameKey] = {
+        'Vaccine Status:': vaccineKey}
     print(personsInContact)
 
 
