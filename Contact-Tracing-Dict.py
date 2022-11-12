@@ -11,7 +11,21 @@ def menuOption():
         3 -> Exit (y/n)
     """
 
+    personsInContact ={}
+    personLog = input("Full Name (FN, MD, SN): ")
+    vaccineStats = input("Did you have full dose of vaccine? (y/n) ").lower()
+    if vaccineStats == 'yes':
+        vaccineStats == 'Fully Vaccinated'
+
+    nameKey = personLog[0]
+    vaccineKey = vaccineStats[0]
+
+    personsInContact[nameKey] = {vaccineKey}
+    print(personsInContact)
+
+
 print(menuOption.__doc__)
+menuOption()
 
 
 """- Perform the selected option 
